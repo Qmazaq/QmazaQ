@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قصة مذاق - المنيو الرسمي</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 15px 10px;
+        }
+
+        .menu-card {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px 25px 20px 20px;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* الهيدر باللون الأحمر الغامق */
+        .luxury-header {
+            background: #8b1a1a;
+            padding: 25px 20px 20px;
+            text-align: center;
+            border-bottom: 3px solid #333;
+        }
+
+        .logo-circle {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #ffd700;
+            overflow: hidden;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .resto-name {
+            font-size: 32px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 0 #333;
+        }
+
+        .slogan {
+            font-size: 14px;
+            color: #ffd700;
+            font-style: italic;
+        }
+
+        .menu-content {
+            padding: 20px 15px;
+        }
+
+        /* قسم مع صورة خلفية */
+        .section {
+            margin-bottom: 25px;
+            border-radius: 15px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            position: relative;
+            overflow: hidden;
+            min-height: 180px;
+        }
+
+        .section-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .section-content {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(2px);
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #8b1a1a;
+            background: white;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 30px;
+            margin-bottom: 15px;
+            border: 2px solid #333;
+            box-shadow: 0 2px 0 #333;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        .item-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.2s ease;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .item-card:hover {
+            transform: translateY(-3px);
+            border-color: #8b1a1a;
+            box-shadow: 0 5px 10px rgba(139, 26, 26, 0.1);
+        }
+
+        .item-details {
+            padding: 12px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .item-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .item-price {
+            background: #8b1a1a;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            border: 1px solid #333;
+        }
+
+        .item-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .item-controls label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .qty-input {
+            width: 65px;
+            padding: 6px;
+            border: 2px solid #ddd;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            background: white;
+            outline: none;
+        }
+
+        .qty-input:focus {
+            border-color: #8b1a1a;
+        }
+
+        .order-bar {
+            position: sticky;
+            bottom: 10px;
+            background: #8b1a1a;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin: 20px 0;
+            border: 2px solid #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+        }
+
+        .total-box {
+            background: white;
+            color: #8b1a1a;
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 2px solid #333;
+        }
+
+        .pickup-select {
+            padding: 8px 15px;
+            border-radius: 30px;
+            border: 2px solid #333;
+            font-size: 14px;
+            font-weight: 600;
+            background: white;
+            color: #333;
+            min-width: 160px;
+        }
+
+        .send-btn {
+            background: white;
+            color: #8b1a1a;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid #333;
+        }
+
+        .send-btn:hover {
+            background: #f0f0f0;
+            transform: scale(1.02);
+        }
+
+        /* قسم التواصل الاجتماعي في نهاية الصفحة */
+        .social-footer {
+            background: #8b1a1a;
+            padding: 20px;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+            margin-top: 30px;
+            border-top: 3px solid #ffd700;
+        }
+
+        .social-title {
+            color: #ffd700;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: 2px solid #ffd700;
+            transition: 0.2s;
+        }
+
+        .social-link:hover {
+            background: #ffd700;
+            color: #8b1a1a;
+            transform: scale(1.05);
+        }
+
+        .social-icon {
+            font-size: 20px;
+        }
+
+        @media (max-width: 700px) {
+            .menu-content { padding: 15px 10px; }
+            .items-grid { grid-template-columns: 1fr; }
+            .order-bar { flex-direction: column; text-align: center; }
+            .pickup-select { width: 100%; }
+            .send-btn { width: 100%; justify-content: center; }
+            .resto-name { font-size: 26px; }
+            .section-title { font-size: 20px; }
+            .social-links { flex-direction: column; align-items: center; }
+            .social-link { width: 80%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-card">
+        <!-- الهيدر مع اللوجو الحقيقي -->
+        <div class="luxury-header">
+            <div class="logo-circle">
+                <img src="https://i.postimg.cc/vDRCBddD/2-(2)-jpg-(1).jpg" alt="قصة مذاق">
+            </div>
+            <div class="resto-name">قصة مذاق</div>
+            <div class="slogan">✦ حكاية طعم لا تُنسى ✦</div>
+        </div>
+
+        <div class="menu-content">
+            <!-- 1. قسم مذاق الشاورما مع صورته -->
+            <div class="section">
+                <div class="section-bg" style="background-image: url('https://i.postimg.cc/3JFHRddY/shawarma-cover-jpg.jpg');"></div>
+                <div class="section-content">
+                    <div class="section-title">🍗 مذاق الشاورما</div>
+                    <div class="items-grid">
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">شاورما صغير</span>
+                                    <span class="item-price">٦ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="شاورما دجاج صغير" data-price="6">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">شاورما كبير</span>
+                                    <span class="item-price">١٢ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="شاورما دجاج كبير" data-price="12">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">شاورما قصة مذاق</span>
+                                    <span class="item-price">١٣ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="شاورما قصة مذاق" data-price="13">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">شاورما بايتس</span>
+                                    <span class="item-price">١٥ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="شاورما بايتس" data-price="15">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">شاورما كاسديا</span>
+                                    <span class="item-price">١٥ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="شاورما كاسديا" data-price="15">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">وجبة شاورما عربي دجاج</span>
+                                    <span class="item-price">٢٠ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="وجبة شاورما عربي دجاج" data-price="20">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">شاورما عربي دبل دجاج</span>
+                                    <span class="item-price">٣٠ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="شاورما عربي دبل دجاج" data-price="30">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">صحن شاورما دجاج</span>
+                                    <span class="item-price">٢٠ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="صحن شاورما دجاج" data-price="20">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">ربع كيلو شاورما</span>
+                                    <span class="item-price">٣٠ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="ربع كيلو شاورما" data-price="30">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">نصف كيلو شاورما</span>
+                                    <span class="item-price">٦٠ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="نصف كيلو شاورما" data-price="60">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">كيلو شاورما</span>
+                                    <span class="item-price">١٢٠ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="كيلو شاورما" data-price="120">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. قسم وجبات عائلية -->
+            <div class="section">
+                <div class="section-content">
+                    <div class="section-title">👨‍👩‍👧‍👦 وجبات عائلية</div>
+                    <div class="items-grid">
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">وجبة ميني شاورما ٦ قطع</span>
+                                    <span class="item-price">٣٠ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="وجبة ميني شاورما 6 قطع" data-price="30">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">وجبة ميني شاورما ١٢ قطعة</span>
+                                    <span class="item-price">٥٥ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="وجبة ميني شاورما 12 قطعة" data-price="55">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">وجبة عربي عائلي ٣ أفراد</span>
+                                    <span class="item-price">٥٤ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="وجبة عربي عائلي 3 أفراد" data-price="54">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">وجبة عربي عائلي ٤ أفراد</span>
+                                    <span class="item-price">٧٢ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="وجبة عربي عائلي 4 أفراد" data-price="72">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">وجبة عربي عائلي ٥ أفراد</span>
+                                    <span class="item-price">٩٠ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="وجبة عربي عائلي 5 أفراد" data-price="90">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. قسم بروستد وفروج -->
+            <div class="section">
+                <div class="section-content">
+                    <div class="section-title">🍗🔥 بروستد وفروج</div>
+                    <div class="items-grid">
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">نصف فروج مشوية</span>
+                                    <span class="item-price">٢٣ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="نصف فروج مشوية" data-price="23">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">فروج مشوية كاملة</span>
+                                    <span class="item-price">٤٥ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="فروج مشوية كاملة" data-price="45">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">بروستد عادي</span>
+                                    <span class="item-price">٢٠ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="بروستد عادي" data-price="20">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">وجبة بروستد حراق</span>
+                                    <span class="item-price">٢٠ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="وجبة بروستد حراق" data-price="20">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">وجبة كرسبي</span>
+                                    <span class="item-price">٢١ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="وجبة كرسبي" data-price="21">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. قسم برجر قصة مذاق مع صورته -->
+            <div class="section">
+                <div class="section-bg" style="background-image: url('https://i.postimg.cc/CKzym7Js/BURGER-jpg-(1).jpg');"></div>
+                <div class="section-content">
+                    <div class="section-title">🍔 برجر قصة مذاق</div>
+                    <div class="items-grid">
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">برجر الأصلي</span>
+                                    <span class="item-price">١٢ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="برجر الأصلي" data-price="12">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">برجر مع بيض</span>
+                                    <span class="item-price">١٤ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="برجر مع بيض" data-price="14">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">وجبة برجر + بطاطس + عصير</span>
+                                    <span class="item-price">٢٠ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="وجبة برجر + بطاطس + عصير" data-price="20">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">وجبة برجر بيض + بطاطس + عصير</span>
+                                    <span class="item-price">٢٢ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="وجبة برجر بيض + بطاطس + عصير" data-price="22">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. القسم الغربي مع صورته -->
+            <div class="section">
+                <div class="section-bg" style="background-image: url('https://i.postimg.cc/FF0MW7bP/shish-jpg-(1).jpg');"></div>
+                <div class="section-content">
+                    <div class="section-title">🌍 القسم الغربي</div>
+                    <div class="items-grid">
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">ساندوتش شيش طاووق</span>
+                                    <span class="item-price">١٢ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="ساندوتش شيش طاووق" data-price="12">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">وجبة شيش طاووق</span>
+                                    <span class="item-price">١٧ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="وجبة شيش طاووق" data-price="17">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">ساندوتش فاهيتا</span>
+                                    <span class="item-price">١٥ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="ساندوتش فاهيتا" data-price="15">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">وجبة فاهيتا</span>
+                                    <span class="item-price">٢٠ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="وجبة فاهيتا" data-price="20">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">وجبة مارينا</span>
+                                    <span class="item-price">٢٨ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="وجبة مارينا" data-price="28">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">وجبة فيليه سمك</span>
+                                    <span class="item-price">٢٣ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="وجبة فيليه سمك" data-price="23">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">وجبة فيليه سمك كبير</span>
+                                    <span class="item-price">٢٨ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="وجبة فيليه سمك كبير" data-price="28">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. المقبلات -->
+            <div class="section">
+                <div class="section-content">
+                    <div class="section-title">🥗 المقبلات</div>
+                    <div class="items-grid">
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">حمص</span>
+                                    <span class="item-price">١٠ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="حمص" data-price="10">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">متبل</span>
+                                    <span class="item-price">١٠ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="متبل" data-price="10">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">سلطة ملفوف</span>
+                                    <span class="item-price">٦ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="سلطة ملفوف" data-price="6">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">سلطة طحينة</span>
+                                    <span class="item-price">٥ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="سلطة طحينة" data-price="5">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">تبولة</span>
+                                    <span class="item-price">١٢ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="تبولة" data-price="12">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">ورق عنب</span>
+                                    <span class="item-price">١٢ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="ورق عنب" data-price="12">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">بطاطس</span>
+                                    <span class="item-price">٥ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="بطاطس" data-price="5">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">صحن مقبلات مشكل</span>
+                                    <span class="item-price">٥٥ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="صحن مقبلات مشكل" data-price="55">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. المشروبات الغازية (كينزا) -->
+            <div class="section">
+                <div class="section-content">
+                    <div class="section-title">🥤 المشروبات الغازية</div>
+                    <div class="items-grid">
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">كينزا ماء</span>
+                                    <span class="item-price">٣ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="كينزا ماء" data-price="3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">كينزا بيبسي</span>
+                                    <span class="item-price">٣ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="كينزا بيبسي" data-price="3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">كينزا ميرندا</span>
+                                    <span class="item-price">٣ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="كينزا ميرندا" data-price="3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">كينزا سفن أب</span>
+                                    <span class="item-price">٣ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="كينزا سفن أب" data-price="3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">كينزا رمان</span>
+                                    <span class="item-price">٣ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="كينزا رمان" data-price="3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">كينزا حمضيات</span>
+                                    <span class="item-price">٣ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="كينزا حمضيات" data-price="3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">كينزا كولا دايت</span>
+                                    <span class="item-price">٣ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="كينزا كولا دايت" data-price="3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">كينزا سفن دايت</span>
+                                    <span class="item-price">٣ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="كينزا سفن دايت" data-price="3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. العصائر الطازجة -->
+            <div class="section">
+                <div class="section-content">
+                    <div class="section-title">🧃 العصائر الطازجة</div>
+                    <div class="items-grid">
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">فراولة</span>
+                                    <span class="item-price">٦ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="عصير فراولة" data-price="6">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">مانجو</span>
+                                    <span class="item-price">٦ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="عصير مانجو" data-price="6">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">رمان</span>
+                                    <span class="item-price">٦ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="عصير رمان" data-price="6">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card">
+                            <div class="item-details">
+                                <div class="item-header">
+                                    <span class="item-name">كوكتيل</span>
+                                    <span class="item-price">٦ ر.س</span>
+                                </div>
+                                <div class="item-controls">
+                                    <label>الكمية:</label>
+                                    <input class="qty-input" type="number" value="0" min="0" data-name="كوكتيل" data-price="6">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- شريط الطلب السفلي -->
+            <div class="order-bar">
+                <div class="total-box">
+                    <span>💰 الإجمالي:</span>
+                    <span id="totalPrice">٠</span>
+                    <span>ر.س</span>
+                </div>
+                
+                <select id="pickupMethod" class="pickup-select">
+                    <option value="من السيارة 🚗">من السيارة 🚗</option>
+                    <option value="داخل المطعم 🏠">داخل المطعم 🏠</option>
+                    <option value="توصيل 🛵">توصيل 🛵</option>
+                </select>
+                
+                <button class="send-btn" onclick="sendOrder()">
+                    <span>📱</span> إرسال الطلب عبر واتساب
+                </button>
+            </div>
+        </div>
+
+        <!-- قسم التواصل الاجتماعي في نهاية الصفحة -->
+        <div class="social-footer">
+            <div class="social-title">تابعونا على وسائل التواصل الاجتماعي</div>
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@qessat.mazaq" target="_blank" class="social-link">
+                    <span class="social-icon">🎵</span> تيك توك
+                </a>
+                <a href="https://www.instagram.com/taste_story.sa/" target="_blank" class="social-link">
+                    <span class="social-icon">📷</span> انستجرام
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // دالة تحديث الإجمالي
+        function updateTotal() {
+            let inputs = document.querySelectorAll('.qty-input');
+            let total = 0;
+            inputs.forEach(input => {
+                let price = parseFloat(input.dataset.price);
+                let qty = parseInt(input.value) || 0;
+                total += price * qty;
+            });
+            document.getElementById('totalPrice').innerText = total.toLocaleString('ar-EG');
+        }
+
+        // ربط جميع حقول الكمية بوظيفة التحديث
+        document.querySelectorAll('.qty-input').forEach(input => {
+            input.addEventListener('input', updateTotal);
+        });
+
+        // دالة إرسال الطلب إلى واتساب
+        function sendOrder() {
+            let inputs = document.querySelectorAll('.qty-input');
+            let message = '🍽 *طلب جديد من مطعم قصة مذاق*\n\n';
+            let hasItems = false;
+            
+            inputs.forEach(input => {
+                let qty = parseInt(input.value) || 0;
+                if (qty > 0) {
+                    hasItems = true;
+                    message += `• ${input.dataset.name} (${input.dataset.price} ر.س) × ${qty}\n`;
+                }
+            });
+
+            if (!hasItems) {
+                alert('❌ الرجاء اختيار صنف واحد على الأقل');
+                return;
+            }
+
+            let pickup = document.getElementById('pickupMethod').value;
+            let total = document.getElementById('totalPrice').innerText;
+            
+            message += `\n📍 *الاستلام:* ${pickup}`;
+            message += `\n💰 *الإجمالي:* ${total} ر.س`;
+            message += `\n\nنتمنى لك وجبة شهية! 🌯\n`;
+            message += `\n📱 تابعونا على:\n`;
+            message += `🎵 تيك توك: @qessat.mazaq\n`;
+            message += `📷 انستجرام: @taste_story.sa`;
+            
+            let phone = "966542666759"; // رقم المطعم
+            let whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>
